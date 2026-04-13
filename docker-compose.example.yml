@@ -1,0 +1,22 @@
+# Copy to docker-compose.yml and adjust as needed, or run directly:
+#   docker compose -f docker-compose.example.yml up --build
+#
+# targets.toml is mounted as a read-only volume so you can update project
+# mappings without rebuilding the image.
+#
+# network_mode: host binds ports on the host network stack (Linux).
+# On Docker Desktop (Windows/macOS) replace with port mapping:
+#   ports:
+#     - "3000:3000"
+
+services:
+  api-debugger:
+    build: .
+    network_mode: host
+    volumes:
+      - ./targets.yaml:/app/targets.yaml:ro
+    environment:
+      PORT: "3000"
+      REQUEST_TIMEOUT_MS: "30000"
+      REDACT_AUTH: "true"
+    restart: unless-stopped

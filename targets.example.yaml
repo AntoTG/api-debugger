@@ -1,0 +1,3 @@
+targets:
+  team-a: https://api-team-a.example.com
+  team-b: https://api-team-b.example.com/v2
